@@ -29,12 +29,23 @@ app.post('/movies', (req, res) => {
     }))
 })
 
-app.patch('/movies:id', (req, res) => {
+app.patch('/movies/:id', (req, res) => {
     const { id } = req.params
     knex('movie_list')
     .where({id: id})
     .update(req.body)
     .then(data => res.send({message: 'Your movie has been added.'}))
+    .catch(err => res.status(404).json({
+        message: 'The data you are looking for could not be found.'
+    }))
+})
+
+app.delete('/movies/:id', (req, res) => {
+    const { id } = req.params
+    knex('movie_list')
+    .where({ id: id })
+    .del(req.body)
+    .then(data => res.send({message: 'Your movie has been deleted.'}))
     .catch(err => res.status(404).json({
         message: 'The data you are looking for could not be found.'
     }))
