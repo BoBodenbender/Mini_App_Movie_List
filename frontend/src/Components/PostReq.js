@@ -24,7 +24,6 @@ export const PostReq = () => {
         <div className='create'>
             <h2>Add A New Movie</h2>
             <form onSubmit={handleSubmit}>
-            <label>Movie Title:</label>
             <br/>
             <input 
                 className="form-control me-2" 
